@@ -17,6 +17,10 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 app.use("/api", apiRoutes);
 
 //Catch-all for 404 Not Found
