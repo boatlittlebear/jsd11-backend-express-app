@@ -21,7 +21,7 @@ app.use("/api", apiRoutes);
 
 //Catch-all for 404 Not Found
 app.use((req, res, next) => {
-  new Error(`Not Found ${req.method} ${req.originalUrl}`);
+  const error = new Error(`Not Found ${req.method} ${req.originalUrl}`);
   error.name = "NotFoundError";
   error.status = 404;
   next(error);
