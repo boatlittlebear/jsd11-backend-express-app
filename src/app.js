@@ -18,3 +18,29 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api", apiRoutes);
+
+//Catch-all for 404 Not Found
+app.use((req, res, next) => {
+  new Error(`Not Found ${req.method} ${req.originalUrl}`);
+  error.name = "NotFoundError";
+  error.status = 404;
+  next(error);
+});
+
+// Centralized Error Handling Middleware
+app.use((err, req, res, next) => {
+  // log error (dev)
+  console.error(err.stack);
+
+  const statusCode = err.status || 500;
+
+  res.status(statusCode).json({
+    success: false,
+    name: err.name || "Error",
+    message: err.message || "Internal Server Error",
+    path: req.originalUrl,
+    method: req.method,
+    timestamp: new Date().toISOString(),
+    stack: err.stack,
+  });
+});
