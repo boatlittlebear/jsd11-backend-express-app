@@ -7,6 +7,9 @@ import { limiter } from "./middlewares/rateLimiter.js";
 
 export const app = express();
 
+app.set("trust proxy", 1); // Trust first proxy
+app.use(helmet());
+
 const corsOptions = {
   origin: [
     "http://localhost:5173",
@@ -16,10 +19,8 @@ const corsOptions = {
   ],
   credentials: true, // Allow cookies to be sent
 };
-app.set("trust proxy", 1); // Trust first proxy
 
 //global middleware
-app.use(helmet());
 
 app.use(cors(corsOptions));
 
