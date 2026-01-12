@@ -1,17 +1,44 @@
 ### GET request to read all users
 GET http://localhost:3000/api/v2/users
 
-### POST request to create a new user 
+### POST request to create a new user
 POST http://localhost:3000/api/v2/users
 Content-Type: application/json
 
 {
-    "username": "Boatza",
-    "email": "boatza@example.com",
-    "password": "pass123",
-    "role": "admin"
+    "username": "BoatXSD",
+    "email": "boatxsd@example.com",
+    "password": "12345678",
+    "role": "user"
 }
+
 
 ### DELETE request to delete a user
 DELETE http://localhost:3000/api/v1/users/4
+
+### POST Login a user
+POST http://localhost:3000/api/v2/users/auth/cookie/login
+Content-Type: application/json
+
+{
+    "username": "ai3",
+    "email": "ai3@example.com",
+    "password": "12345678",
+    "role": "admin"
+}
+
+### POST Logout a user
+POST http://localhost:3000/api/v2/users/auth/cookie/logout
+
+### GET request to check user authentication
+GET http://localhost:3000/api/v2/users/auth/cookie/me
+
+###Ask AI
+POST http://localhost:3000/api/v2/users/auth/ai/ask
+Content-Type: application/json
+
+{
+    "question": "How many user name is LUNGTU?",
+    "topK": 5
+}
 
